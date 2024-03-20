@@ -1,6 +1,20 @@
 // your code
 const EMOJIS = ["🥔", "🍒", "🥑", "🌽", "🥕", "🍇", "🍉", "🍌", "🥭", "🍍"];
 
+function shuffleAndSortedCards(cards) {
+  // сортировка исходного массива в случайном порядке
+  const sortedArr = cards.sort(() => Math.random(cards) - 0.5);
+  // достаём из 10 элементов первые 8
+  const dublicateArr = [...sortedArr].slice(0, 8);
+  // дублируем первые 8 элементов
+  const doubleArr = [...dublicateArr, ...dublicateArr];
+  // сортировка массива из 16 элементов в случайном порядке 
+  const sortedDoubleArr = doubleArr.sort(() => Math.random(doubleArr) - 0.5);
+  return sortedDoubleArr;
+}
+
+shuffleAndSortedCards(EMOJIS);
+
 const STATE = {
   isGameStarted: false, // игра началась или нет
   totalTime: 0, // общее время в игре
@@ -42,7 +56,7 @@ generateGame();
 const CARDS = SELECTORS.board.children;
 
 if (CARDS) {
-  // HTMLCollection в массив 
+  // HTMLCollection в массив
   [...CARDS].forEach((card) => {
     card.addEventListener("click", (event) => {
       console.log(event.target);
